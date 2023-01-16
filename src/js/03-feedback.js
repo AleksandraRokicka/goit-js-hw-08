@@ -6,18 +6,16 @@ const LOCALSTORAGE_KEY = 'feedback-form-state';
 
 window.addEventListener('load', () => {
   //automatyczne wypelnianie formualrza po wejsciu na stronę(zapamietanie danych). Zapamiętuje NIE WYSŁANE dane, tylko wpisane//
-    Array.from(form.elements).forEach(el =>{
-    //Gdy chcemy uzyc foreach to musimy przekształcić na tablicę//
-    if (el.name) {
-      const prevVal = localStorage.getItem(el.name); //prevVal = email         prevVal = message
-      el.value = prevVal; // test@test.pl = email     wiadomoscktorajestwpisana = message
-    }
-  });
+  const prevVal = JSON.parse(localStorage.getItem('feedback-form-state'));
+  if (localStorage.getItem('feedback-form-state') !== null) {
+    formEmail.value = prevVal.email;
+    formMessage.value = prevVal.message;
+  }
 });
 
 form.addEventListener(
   'input', //listener na input, czyli to co wpisuje//
-    throttle(() => {
+  throttle(() => {
     let someData = {
       email: formEmail.value,
       message: formMessage.value,
@@ -26,7 +24,6 @@ form.addEventListener(
   }, 500)
 );
 
-
 form.addEventListener('submit', e => {
   //jak klikne submit, to wyczysci sie formularz i localstorage, po przeladowaniu strony bede miec pusty formularz, bo localstorage zostalo wyczyszczone
   e.preventDefault();
@@ -34,9 +31,3 @@ form.addEventListener('submit', e => {
   form.reset(); //zresetowanie danych formularza po wysłaniu-submit//
   localStorage.clear(); //wyczyczczenie local storage po wysłaniu-submit//
 });
-
-
-
-
-
-
