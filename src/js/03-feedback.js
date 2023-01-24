@@ -26,7 +26,7 @@ form.addEventListener(
 form.addEventListener('submit', e => {
   //jak klikne submit, to wyczysci sie formularz i localstorage, po przeladowaniu strony bede miec pusty formularz, bo localstorage zostalo wyczyszczone
   e.preventDefault();
-  console.log(localStorage.getItem('feedback-form-state')); //wrzucam na konsolę obiekt wpisanych daych//
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state'))); //wrzucam na konsolę obiekt wpisanych daych. Parse sprawia, ze nazwa email i message nie są stringami, nie pokazują sie w konsoli w cudzyslowie.//
   form.reset(); //zresetowanie danych formularza po wysłaniu-submit//
   localStorage.removeItem('feedback-form-state'); //wyczyszczenie local storage, ale tylko danych formularza, nie usuwa nam to danych z video//
 
