@@ -30,5 +30,5 @@ form.addEventListener('submit', e => {
   form.reset(); //zresetowanie danych formularza po wysłaniu-submit//
   localStorage.removeItem('feedback-form-state'); //wyczyszczenie local storage, ale tylko danych formularza, nie usuwa nam to danych z video//
 
-  // localStorage.clear(); //wyczyczczenie CAŁEGO local storage (z video, feedback itp.) po wysłaniu-submit//
+  // localStorage.clear(); //wyczyczczenie CAŁEGO local storage (z video, feedback itp.) po wysłaniu formularza-submit//
 });
